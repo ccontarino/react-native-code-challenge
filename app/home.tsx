@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+  Image,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { Stack, useRouter } from "expo-router";
 import { COLORS, FONT, SIZES } from "../constants";
 import { Camera, CameraType } from "expo-camera";
@@ -49,22 +56,27 @@ const Home = () => {
         <View style={homeStyle.textContainer}>
           <Text style={homeStyle.text}>App Camera</Text>
         </View>
-        <Camera
-          style={styles.camera}
-          type={type}
-          flashMode={flash}
-          ref={cameraRef}
-        >
-          <View>
-            {/* <Text style={{ color: COLORS.white }}>Hello</Text> */}
-            <Button
-              onPress={takePicture}
-              title={"Take a picture"}
-              icon={"camera"}
-              color="white"
-            ></Button>
-          </View>
-        </Camera>
+
+        {!image ? (
+          <Camera
+            style={styles.camera}
+            type={type}
+            flashMode={flash}
+            ref={cameraRef}
+          >
+            <View>
+              {/* <Text style={{ color: COLORS.white }}>Hello</Text> */}
+              <Button
+                onPress={takePicture}
+                title={"Take a picture"}
+                icon={"camera"}
+                color="white"
+              ></Button>
+            </View>
+          </Camera>
+        ) : (
+          <Image source={{ uri: image }} style={styles.camera} />
+        )}
       </View>
     </SafeAreaView>
   );
