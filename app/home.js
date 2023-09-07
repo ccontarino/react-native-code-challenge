@@ -1,6 +1,7 @@
 import { SafeAreaView, ScrollView, Text, View } from "react-native";
 import { Stack, useRouter } from "expo-router";
-import { COLORS, SIZES } from "../constants";
+import { COLORS, FONT, SIZES } from "../constants";
+import styleHome from "./home.style";
 
 const Home = () => {
   const router = useRouter();
@@ -23,7 +24,9 @@ const Home = () => {
             padding: SIZES.medium,
           }}
         >
-          <Text>Home</Text>
+          <View style={styleHome.textContainer}>
+            <Text style={styleHome.text}>App Camera</Text>
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
