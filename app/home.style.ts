@@ -1,10 +1,11 @@
 import { StyleSheet } from "react-native";
-import { FONT, SIZES } from "../constants";
+import { SIZES } from "../constants";
 
 const styles = StyleSheet.create({
+  homeContainer: {
+    flex: 1,
+  },
   textContainer: {
-    width: "100%",
-    display: "flex",
     alignItems: "center",
   },
   text: {
