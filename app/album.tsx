@@ -4,6 +4,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { COLORS } from "../constants";
 import SafeArea from "../components/SafeArea/SafeArea";
 import * as MediaLibrary from "expo-media-library";
+import CarouselComponent from "../components/Carousel/Carousel";
 
 function Album() {
   const [images, setImages] = useState([]);
@@ -35,7 +36,7 @@ function Album() {
   return (
     <SafeArea>
       <View style={{ flex: 1, borderColor: "red", borderWidth: 1 }}>
-        <View style={{ width: "100%", alignItems: "center" }}>
+        <View style={{ width: "100%", alignItems: "center", flex: 1 }}>
           <Text
             style={{
               fontSize: 20,
@@ -46,7 +47,7 @@ function Album() {
           >
             Gallery
           </Text>
-          <View style={{ flexDirection: "row", display: "flex" }}>
+          {/* <View style={{ flexDirection: "row", display: "flex" }}>
             {images && (
               <FlatList
                 data={images}
@@ -77,7 +78,8 @@ function Album() {
                 keyExtractor={(item) => item.id}
               />
             )}
-          </View>
+          </View> */}
+          <CarouselComponent images={images} />
         </View>
       </View>
     </SafeArea>
