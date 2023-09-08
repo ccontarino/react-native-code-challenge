@@ -4,6 +4,7 @@ import { SIZES } from "../constants";
 const styles = StyleSheet.create({
   homeContainer: {
     flex: 1,
+    backgroundColor: "#000",
   },
   textContainer: {
     alignItems: "center",
