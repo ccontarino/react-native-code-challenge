@@ -32,6 +32,15 @@ const Layout = () => {
           headerShown: false,
         }}
       />
+        <Stack.Screen
+        name="album"
+        options={{
+          headerStyle: { backgroundColor: COLORS.lightWhite },
+          headerShadowVisible: false,
+          headerTitle: "",
+          headerShown: false,
+        }}
+      />
     </Stack>
   );
 };

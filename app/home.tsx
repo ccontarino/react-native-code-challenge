@@ -7,6 +7,7 @@ import * as MediaLibrary from "expo-media-library";
 import homeStyle from "./home.style";
 import Button from "../components/ Button/Button";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import SafeArea from "../components/SafeArea/SafeArea";
 
 const Home = () => {
   const [hasPermission, setHasPermission] = useState(null);
@@ -72,16 +73,7 @@ const Home = () => {
   };
   const insets = useSafeAreaInsets();
   return (
-    <View
-      style={{
-        flex: 1,
-        // borderColor: "red",
-        // borderWidth: 1,
-        backgroundColor: COLORS.lightWhite,
-        paddingTop: insets.top,
-        paddingBottom: insets.bottom,
-      }}
-    >
+    <SafeArea>
       <View style={homeStyle.homeContainer}>
         {/* <View style={homeStyle.textContainer}>
           <Text style={homeStyle.text}>App Camera</Text>
@@ -167,7 +159,7 @@ const Home = () => {
           </View>
         )}
       </View>
-    </View>
+    </SafeArea>
   );
 };
 export default Home;

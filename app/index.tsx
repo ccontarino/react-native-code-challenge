@@ -4,7 +4,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 export default function Index() {
   return (
     <SafeAreaProvider>
-      <Redirect href="/home" />
+      <Redirect href="/album" />
     </SafeAreaProvider>
   );
 }
