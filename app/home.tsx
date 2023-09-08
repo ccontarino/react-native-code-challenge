@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
-import { Stack, useRouter } from "expo-router";
-import { COLORS, FONT, SIZES } from "../constants";
+import { Image, StyleSheet, Text, View } from "react-native";
+
+import { COLORS } from "../constants";
 import { Camera, CameraType } from "expo-camera";
 import * as MediaLibrary from "expo-media-library";
 import homeStyle from "./home.style";
@@ -9,7 +9,6 @@ import Button from "../components/ Button/Button";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const Home = () => {
-  const router = useRouter();
   const [hasPermission, setHasPermission] = useState(null);
   const [image, setImage] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
@@ -58,28 +57,36 @@ const Home = () => {
   };
   const insets = useSafeAreaInsets();
   return (
-    <SafeAreaView
+    <View
       style={{
         flex: 1,
+        // borderColor: "red",
+        // borderWidth: 1,
         backgroundColor: COLORS.lightWhite,
-        marginTop: insets.top,
+        paddingTop: insets.top,
+        paddingBottom: insets.bottom,
       }}
     >
       <View style={homeStyle.homeContainer}>
-        <View style={homeStyle.textContainer}>
+        {/* <View style={homeStyle.textContainer}>
           <Text style={homeStyle.text}>App Camera</Text>
+        </View> */}
+        <View
+          style={{
+            flex: 0.8,
+          }}
+        >
+          {!image ? (
+            <Camera
+              style={styles.camera}
+              type={type}
+              flashMode={flash}
+              ref={cameraRef}
+            ></Camera>
+          ) : (
+            <Image source={{ uri: image }} style={styles.camera} />
+          )}
         </View>
-
-        {!image ? (
-          <Camera
-            style={styles.camera}
-            type={type}
-            flashMode={flash}
-            ref={cameraRef}
-          ></Camera>
-        ) : (
-          <Image source={{ uri: image }} style={styles.camera} />
-        )}
         {image ? (
           <View
             style={{
@@ -90,18 +97,22 @@ const Home = () => {
               justifyContent: "space-around",
             }}
           >
-            <Button
-              onPress={reTakepicture}
-              title={"Retake picture"}
-              icon={"retweet"}
-              color="white"
-            />
-            <Button
-              onPress={savePicture}
-              title={"Accept"}
-              icon={"check"}
-              color="white"
-            />
+            <View style={{ flex: 0.5 }}>
+              <Button
+                onPress={reTakepicture}
+                title={"Retake picture"}
+                icon={"retweet"}
+                color="white"
+              />
+            </View>
+            <View style={{ flex: 0.5 }}>
+              <Button
+                onPress={savePicture}
+                title={"Accept"}
+                icon={"check"}
+                color="white"
+              />
+            </View>
           </View>
         ) : (
           <View
@@ -121,7 +132,7 @@ const Home = () => {
           </View>
         )}
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 export default Home;
@@ -133,7 +144,8 @@ const styles = StyleSheet.create({
     paddingBottom: 8,
   },
   camera: {
-    flex: 0.9,
+    flex: 1,
     justifyContent: "flex-end",
+    objectFit: "contain",
   },
 });
