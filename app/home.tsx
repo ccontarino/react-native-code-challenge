@@ -44,6 +44,7 @@ const Home = () => {
     if (image) {
       try {
         const asset = await MediaLibrary.createAssetAsync(image);
+        MediaLibrary.createAlbumAsync("galleryApp", asset, true);
         alert("Picture saved! 🎉");
         setImage(null);
         console.log("saved successfully");
@@ -71,7 +72,7 @@ const Home = () => {
       setType(CameraType.back);
     }
   };
-  const insets = useSafeAreaInsets();
+
   return (
     <SafeArea>
       <View style={homeStyle.homeContainer}>
