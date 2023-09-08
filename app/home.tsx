@@ -55,6 +55,21 @@ const Home = () => {
   const reTakepicture = () => {
     setImage(null);
   };
+
+  const setFlashMode = () => {
+    if (flash === Camera.Constants.FlashMode.off) {
+      setFlash(Camera.Constants.FlashMode.on);
+    } else {
+      setFlash(Camera.Constants.FlashMode.off);
+    }
+  };
+  const setTypeMode = () => {
+    if (type === CameraType.back) {
+      setType(CameraType.front);
+    } else {
+      setType(CameraType.back);
+    }
+  };
   const insets = useSafeAreaInsets();
   return (
     <View
@@ -82,7 +97,27 @@ const Home = () => {
               type={type}
               flashMode={flash}
               ref={cameraRef}
-            ></Camera>
+            >
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  paddingHorizontal: 30,
+                }}
+              >
+                <Button title="" icon="retweet" onPress={setTypeMode} />
+                <Button
+                  onPress={setFlashMode}
+                  title=""
+                  icon="flash"
+                  color={
+                    flash === Camera.Constants.FlashMode.off
+                      ? COLORS.gray
+                      : COLORS.white
+                  }
+                />
+              </View>
+            </Camera>
           ) : (
             <Image source={{ uri: image }} style={styles.camera} />
           )}
@@ -145,7 +180,8 @@ const styles = StyleSheet.create({
   },
   camera: {
     flex: 1,
-    justifyContent: "flex-end",
+    justifyContent: "flex-start",
+    paddingTop: 40,
     objectFit: "contain",
   },
 });
