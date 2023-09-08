@@ -5,9 +5,28 @@
       "bundler": "metro"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera."
+        }
+      ]
     ],
     "name": "react-native-code-challenge",
-    "slug": "react-native-code-challenge"
+    "slug": "react-native-code-challenge",
+    "ios": {
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app uses the camera to scan barcodes on event tickets."
+      },
+      "bundleIdentifier": "com.kmkpala.reactnativecodechallenge"
+    },
+    "android": {
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ],
+      "package": "com.kmkpala.reactnativecodechallenge"
+    }
   }
 }
