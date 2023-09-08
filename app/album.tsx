@@ -46,16 +46,18 @@ function Album() {
           >
             Gallery
           </Text>
-          <View style={{ flexDirection: "row" }}>
+          <View style={{ flexDirection: "row", display: "flex" }}>
             {images && (
               <FlatList
                 data={images}
+                numColumns={2}
                 renderItem={({ item }) => {
                   return (
                     <View
                       style={{
-                        width: "100%",
-                        padding: 10,
+                        flex: 0.5,
+                        display: "flex",
+                        flexDirection: "row",
                         height: 200,
                         borderColor: "red",
                         borderWidth: 1,
