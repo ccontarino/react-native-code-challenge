@@ -5,16 +5,8 @@ import { COLORS } from "../constants";
 import SafeArea from "../components/SafeArea/SafeArea";
 
 function Album(props) {
-  const insets = useSafeAreaInsets();
   return (
-    <SafeArea
-      style={{
-        flex: 1,
-        backgroundColor: COLORS.lightWhite,
-        paddingTop: insets.top,
-        paddingBottom: insets.bottom,
-      }}
-    >
+    <SafeArea>
       <Text>album</Text>
     </SafeArea>
   );

@@ -32,7 +32,7 @@ const Layout = () => {
           headerShown: false,
         }}
       />
-        <Stack.Screen
+      <Stack.Screen
         name="album"
         options={{
           headerStyle: { backgroundColor: COLORS.lightWhite },
