@@ -15,18 +15,19 @@ function Album() {
     try {
       const albums = await MediaLibrary.getAlbumsAsync();
 
-      console.log("albums::", albums);
+      console.log(albums, "###");
+
       const CameraAlbumFound = albums.find(
         (album) => album.title === "galleryApp"
       );
-      console.log(CameraAlbumFound);
+
       if (CameraAlbumFound) {
         const images = await MediaLibrary.getAssetsAsync({
           first: 20,
           album: CameraAlbumFound.id,
           sortBy: MediaLibrary.SortBy.creationTime,
         });
-        console.log(images.assets.length, "###");
+        
         setImages(images.assets);
       }
     } catch (error) {
@@ -101,7 +102,6 @@ const styles = StyleSheet.create({
   },
   takePicture: {
     justifyContent: "flex-start",
-
     flex: 0.3,
   },
 });

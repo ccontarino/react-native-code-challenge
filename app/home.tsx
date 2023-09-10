@@ -29,7 +29,6 @@ const Home = () => {
         const photo = await cameraRef.current.takePictureAsync();
         setImage(photo.uri);
       } catch (error) {
-        console.log("aca");
         console.log(error);
       }
     }
@@ -38,8 +37,13 @@ const Home = () => {
   const savePicture = async () => {
     if (image) {
       try {
+        const isAlbumCreated = await MediaLibrary.getAlbumAsync("galleryApp");
         const asset = await MediaLibrary.createAssetAsync(image);
-        MediaLibrary.createAlbumAsync("galleryApp", asset, true);
+        if (!isAlbumCreated) {
+          await MediaLibrary.createAlbumAsync("galleryApp", asset, false);
+        }else{
+          await MediaLibrary.addAssetsToAlbumAsync([asset], isAlbumCreated.id, false);
+        }
         alert("Picture saved! 🎉");
         setImage(null);
         console.log("saved successfully");

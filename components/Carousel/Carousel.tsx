@@ -33,7 +33,9 @@ const CarouselComponent = ({ images = null }) => {
           containerStyle={styles.imageContainer}
           style={styles.image}
           parallaxFactor={0.4}
+          showSpinner={true}
           {...parallaxProps}
+
         />
         {/* <Text style={styles.title} numberOfLines={2}>
           {item.title}
