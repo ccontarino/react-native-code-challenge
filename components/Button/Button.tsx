@@ -1,6 +1,7 @@
 import React from "react";
 import { Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Entypo } from "@expo/vector-icons";
+import { COLORS } from "../../constants";
 
 function Button({ title, onPress, icon, color = "#fff" }) {
   return (
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
   text: {
     fontWeight: "bold",
     fontSize: 17,
-    color: "#f1f1f1",
+    color: COLORS.white,
     marginLeft: 10,
   },
 });

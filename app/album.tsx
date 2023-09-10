@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, Image, ScrollView, Text, View } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Text, View } from "react-native";
 import { COLORS } from "../constants";
 import SafeArea from "../components/SafeArea/SafeArea";
 import * as MediaLibrary from "expo-media-library";
 import CarouselComponent from "../components/Carousel/Carousel";
-
+import EmptyImages from "../components/EmptyImages/EmptyImage";
 function Album() {
   const [images, setImages] = useState([]);
 
@@ -36,51 +35,25 @@ function Album() {
   return (
     <SafeArea>
       <View style={{ flex: 1, borderColor: "red", borderWidth: 1 }}>
-        <View style={{ width: "100%", alignItems: "center", flex: 1 }}>
-          <Text
-            style={{
-              fontSize: 20,
-              fontFamily: "DMBold",
-              color: COLORS.dark,
-              marginTop: 20,
-            }}
-          >
-            Gallery
-          </Text>
-          {/* <View style={{ flexDirection: "row", display: "flex" }}>
-            {images && (
-              <FlatList
-                data={images}
-                numColumns={2}
-                renderItem={({ item }) => {
-                  return (
-                    <View
-                      style={{
-                        flex: 0.5,
-                        display: "flex",
-                        flexDirection: "row",
-                        height: 200,
-                        borderColor: "red",
-                        borderWidth: 1,
-                      }}
-                    >
-                      <Image
-                        source={{ uri: item.uri }}
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          resizeMode: "cover",
-                        }}
-                      />
-                    </View>
-                  );
+        <>
+          {images.length > 0 ? (
+            <View style={{ width: "100%", alignItems: "center", flex: 1 }}>
+              <Text
+                style={{
+                  fontSize: 20,
+                  fontFamily: "DMBold",
+                  color: COLORS.dark,
+                  marginTop: 20,
                 }}
-                keyExtractor={(item) => item.id}
-              />
-            )}
-          </View> */}
-          <CarouselComponent images={images} />
-        </View>
+              >
+                Images
+              </Text>
+              <CarouselComponent images={images} />
+            </View>
+          ) : (
+            <EmptyImages />
+          )}
+        </>
       </View>
     </SafeArea>
   );

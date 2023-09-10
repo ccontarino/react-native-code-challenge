@@ -5,9 +5,10 @@ import { COLORS } from "../constants";
 import { Camera, CameraType } from "expo-camera";
 import * as MediaLibrary from "expo-media-library";
 import homeStyle from "./home.style";
-import Button from "../components/ Button/Button";
+import Button from "../components/Button/Button";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import SafeArea from "../components/SafeArea/SafeArea";
+import GoBack from "../components/GoBack/GoBack";
 
 const Home = () => {
   const [hasPermission, setHasPermission] = useState(null);
@@ -76,6 +77,7 @@ const Home = () => {
   return (
     <SafeArea>
       <View style={homeStyle.homeContainer}>
+        <GoBack />
         {/* <View style={homeStyle.textContainer}>
           <Text style={homeStyle.text}>App Camera</Text>
         </View> */}
