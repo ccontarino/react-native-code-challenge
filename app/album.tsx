@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
+import Button from "../components/Button/Button";
 import { COLORS } from "../constants";
 import SafeArea from "../components/SafeArea/SafeArea";
 import * as MediaLibrary from "expo-media-library";
 import CarouselComponent from "../components/Carousel/Carousel";
 import EmptyImages from "../components/EmptyImages/EmptyImage";
+import { router } from "expo-router";
+
 function Album() {
   const [images, setImages] = useState([]);
 
@@ -17,7 +20,7 @@ function Album() {
       console.log(CameraAlbumFound);
       if (CameraAlbumFound) {
         const images = await MediaLibrary.getAssetsAsync({
-          first: 30,
+          first: 20,
           album: CameraAlbumFound.id,
           sortBy: MediaLibrary.SortBy.creationTime,
         });
@@ -32,23 +35,43 @@ function Album() {
     getAlbumsAsync();
   }, []);
 
+  const takePicture = () => {
+    router.push("/home");
+  };
+
   return (
     <SafeArea>
-      <View style={{ flex: 1, borderColor: "red", borderWidth: 1 }}>
+      <View style={{ flex: 1 }}>
         <>
           {images.length > 0 ? (
-            <View style={{ width: "100%", alignItems: "center", flex: 1 }}>
-              <Text
-                style={{
-                  fontSize: 20,
-                  fontFamily: "DMBold",
-                  color: COLORS.dark,
-                  marginTop: 20,
-                }}
-              >
-                Images
-              </Text>
-              <CarouselComponent images={images} />
+            <View
+              style={{
+                width: "100%",
+                justifyContent: "center",
+                alignItems: "center",
+                flex: 1,
+              }}
+            >
+              <View style={styles.containerTitle}>
+                <Text
+                  style={{
+                    fontSize: 20,
+                    fontFamily: "DMBold",
+                    color: COLORS.dark,
+                  }}
+                >
+                  Images
+                </Text>
+              </View>
+              <View style={styles.images}>
+                <CarouselComponent images={images} />
+                <Button
+                  onPress={takePicture}
+                  icon="camera"
+                  title="Take a picture"
+                  color={"black"}
+                />
+              </View>
             </View>
           ) : (
             <EmptyImages />
@@ -60,3 +83,16 @@ function Album() {
 }
 
 export default Album;
+
+const styles = StyleSheet.create({
+  images: {
+    flex: 1,
+  },
+  containerTitle: {
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    flex: 0.1,
+    backgroundColor: COLORS.lightWhite,
+  },
+});

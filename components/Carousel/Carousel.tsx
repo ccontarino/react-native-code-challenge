@@ -9,23 +9,6 @@ import {
   Platform,
 } from "react-native";
 
-// const ENTRIES1 = [
-//   {
-//     uri: "https://i.imgur.com/UYiroysl.jpg",
-//   },
-//   {
-//     uri: "https://i.imgur.com/UPrs1EWl.jpg",
-//   },
-//   {
-//     uri: "https://i.imgur.com/MABUbpDl.jpg",
-//   },
-//   {
-//     uri: "https://i.imgur.com/KZsmUi2l.jpg",
-//   },
-//   {
-//     uri: "https://i.imgur.com/2nCt3Sbl.jpg",
-//   },
-// ];
 const { width: screenWidth } = Dimensions.get("window");
 
 const CarouselComponent = ({ images = null }) => {

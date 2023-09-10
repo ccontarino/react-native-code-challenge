@@ -78,9 +78,6 @@ const Home = () => {
     <SafeArea>
       <View style={homeStyle.homeContainer}>
         <GoBack />
-        {/* <View style={homeStyle.textContainer}>
-          <Text style={homeStyle.text}>App Camera</Text>
-        </View> */}
         <View
           style={{
             flex: 0.8,

@@ -7,7 +7,7 @@ function Button({ title, onPress, icon, color = "#fff" }) {
   return (
     <TouchableOpacity style={styles.button} onPress={onPress}>
       <Entypo name={icon} size={28} color={color} />
-      <Text style={styles.text}>{title}</Text>
+      <Text style={styles.text(color)}>{title}</Text>
     </TouchableOpacity>
   );
 }
@@ -21,10 +21,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  text: {
+  text: (color) => ({
     fontWeight: "bold",
     fontSize: 17,
-    color: COLORS.white,
+    color: color ? color : COLORS.white,
     marginLeft: 10,
-  },
+  }),
 });
