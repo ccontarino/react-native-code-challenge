@@ -14,6 +14,8 @@ function Album() {
   const getAlbumsAsync = async () => {
     try {
       const albums = await MediaLibrary.getAlbumsAsync();
+
+      console.log("albums::", albums);
       const CameraAlbumFound = albums.find(
         (album) => album.title === "galleryApp"
       );
@@ -24,8 +26,8 @@ function Album() {
           album: CameraAlbumFound.id,
           sortBy: MediaLibrary.SortBy.creationTime,
         });
+        console.log(images.assets.length, "###");
         setImages(images.assets);
-        console.log(images.assets);
       }
     } catch (error) {
       console.log(error);
@@ -65,12 +67,14 @@ function Album() {
               </View>
               <View style={styles.images}>
                 <CarouselComponent images={images} />
-                <Button
-                  onPress={takePicture}
-                  icon="camera"
-                  title="Take a picture"
-                  color={"black"}
-                />
+                <View style={styles.takePicture}>
+                  <Button
+                    onPress={takePicture}
+                    icon="camera"
+                    title="Take a picture"
+                    color={"black"}
+                  />
+                </View>
               </View>
             </View>
           ) : (
@@ -94,5 +98,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flex: 0.1,
     backgroundColor: COLORS.lightWhite,
+  },
+  takePicture: {
+    justifyContent: "flex-start",
+
+    flex: 0.3,
   },
 });

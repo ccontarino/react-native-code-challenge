@@ -2,15 +2,23 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import Button from "../Button/Button";
 import { COLORS } from "../../constants";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 
 function EmptyImages() {
+  const takePicture = () => {
+    router.push("/home");
+  };
   return (
     <View style={styles.container}>
       <Text style={styles.text}>No images available</Text>
       <Text style={styles.text}>Plase Take a picture to see images here</Text>
       <Link href={"/home"} asChild>
-        <Button title="Take a picture" icon="camera" color="white" />
+        <Button
+          title="Take a picture"
+          icon="camera"
+          color="white"
+          onPress={takePicture}
+        />
       </Link>
     </View>
   );

@@ -1,41 +1,35 @@
 import React, { useEffect, useState } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 
-import { COLORS } from "../constants";
+import { COLORS, SIZES } from "../constants";
 import { Camera, CameraType } from "expo-camera";
 import * as MediaLibrary from "expo-media-library";
-import homeStyle from "./home.style";
 import Button from "../components/Button/Button";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import SafeArea from "../components/SafeArea/SafeArea";
 import GoBack from "../components/GoBack/GoBack";
+import useCameraPermission from "../hooks/useCameraPermission";
 
 const Home = () => {
-  const [hasPermission, setHasPermission] = useState(null);
+  // const [hasPermission, setHasPermission] = useState(null);
   const [image, setImage] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
   const [flash, setFlash] = useState(Camera.Constants.FlashMode.off);
   const cameraRef = React.useRef(null);
 
-  useEffect(() => {
-    (async () => {
-      MediaLibrary.requestPermissionsAsync();
-      const { status } = await Camera.requestCameraPermissionsAsync();
-      setHasPermission(status === "granted");
-    })();
-  }, []);
+  const hasPermission = useCameraPermission();
 
   if (hasPermission === false) {
-    return <Text>No permisson</Text>;
+    return <Text>No permission</Text>;
   }
 
   const takePicture = async () => {
     if (cameraRef) {
       try {
         const photo = await cameraRef.current.takePictureAsync();
-        console.log(photo);
         setImage(photo.uri);
       } catch (error) {
+        console.log("aca");
         console.log(error);
       }
     }
@@ -76,7 +70,7 @@ const Home = () => {
 
   return (
     <SafeArea>
-      <View style={homeStyle.homeContainer}>
+      <View style={styles.homeContainer}>
         <GoBack />
         <View
           style={{
@@ -97,7 +91,12 @@ const Home = () => {
                   paddingHorizontal: 30,
                 }}
               >
-                <Button title="" icon="retweet" onPress={setTypeMode} />
+                <Button
+                  color={"white"}
+                  title=""
+                  icon="retweet"
+                  onPress={setTypeMode}
+                />
                 <Button
                   onPress={setFlashMode}
                   title=""
@@ -175,5 +174,16 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     paddingTop: 40,
     objectFit: "contain",
+  },
+  homeContainer: {
+    flex: 1,
+    backgroundColor: "#000",
+  },
+  textContainer: {
+    alignItems: "center",
+  },
+  text: {
+    fontWeight: "bold",
+    fontSize: SIZES.large,
   },
 });

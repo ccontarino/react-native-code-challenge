@@ -3,11 +3,14 @@ import { Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import { COLORS } from "../../constants";
 
-function Button({ title, onPress, icon, color = "#fff" }) {
+function Button({ title, onPress, icon, color }) {
+  const colorStyle = {
+    color: color ? color : COLORS.white,
+  };
   return (
     <TouchableOpacity style={styles.button} onPress={onPress}>
       <Entypo name={icon} size={28} color={color} />
-      <Text style={styles.text(color)}>{title}</Text>
+      <Text style={[styles.text, colorStyle]}>{title}</Text>
     </TouchableOpacity>
   );
 }
@@ -21,10 +24,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  text: (color) => ({
+  text: {
     fontWeight: "bold",
     fontSize: 17,
-    color: color ? color : COLORS.white,
     marginLeft: 10,
-  }),
+  },
 });
