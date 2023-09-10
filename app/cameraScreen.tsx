@@ -10,9 +10,11 @@ import SafeArea from "../components/SafeArea/SafeArea";
 import GoBack from "../components/GoBack/GoBack";
 import useCameraPermission from "../hooks/useCameraPermission";
 import { router } from "expo-router";
+import { Route } from "expo-router/build/Route";
+import { ROUTES } from "../constants/constants";
 
 const Home = () => {
-  // const [hasPermission, setHasPermission] = useState(null);
+  // const [hasPermission, setHasPermission] = seState(null);
   const [image, setImage] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
   const [flash, setFlash] = useState(Camera.Constants.FlashMode.off);
@@ -42,13 +44,16 @@ const Home = () => {
         const asset = await MediaLibrary.createAssetAsync(image);
         if (!isAlbumCreated) {
           await MediaLibrary.createAlbumAsync("galleryApp", asset, false);
-        }else{
-          await MediaLibrary.addAssetsToAlbumAsync([asset], isAlbumCreated.id, false);
+        } else {
+          await MediaLibrary.addAssetsToAlbumAsync(
+            [asset],
+            isAlbumCreated.id,
+            false
+          );
         }
         setImage(null);
         console.log("saved successfully");
-        router.push("/album");
-
+        router.push(ROUTES.SCREEN.HOME);
       } catch (error) {
         console.log(error);
       }

@@ -3,10 +3,11 @@ import { View, Text, StyleSheet } from "react-native";
 import Button from "../Button/Button";
 import { COLORS } from "../../constants";
 import { Link, router } from "expo-router";
+import { ROUTES } from "../../constants/constants";
 
 function EmptyImages() {
   const takePicture = () => {
-    router.push("/home");
+    router.push(ROUTES.SCREEN.CAMERA);
   };
   return (
     <View style={styles.container}>

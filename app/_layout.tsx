@@ -1,6 +1,7 @@
 import { Slot, Stack } from "expo-router";
 import { useFonts } from "expo-font";
 import { COLORS } from "../constants";
+import { ROUTES } from "../constants/constants";
 // import * as SplashScreen from "expo-splash-screen";
 
 // SplashScreen.preventAutoHideAsync();
@@ -22,9 +23,9 @@ const Layout = () => {
   }
 
   return (
-    <Stack initialRouteName="home">
+    <Stack initialRouteName={ROUTES.SCREEN.HOME}>
       <Stack.Screen
-        name="home"
+        name={ROUTES.SCREEN.CAMERA}
         options={{
           headerStyle: { backgroundColor: COLORS.lightWhite },
           headerShadowVisible: false,
@@ -33,7 +34,7 @@ const Layout = () => {
         }}
       />
       <Stack.Screen
-        name="album"
+        name={ROUTES.SCREEN.HOME}
         options={{
           headerStyle: { backgroundColor: COLORS.lightWhite },
           headerShadowVisible: false,

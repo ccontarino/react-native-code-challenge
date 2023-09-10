@@ -7,6 +7,7 @@ import * as MediaLibrary from "expo-media-library";
 import CarouselComponent from "../components/Carousel/Carousel";
 import EmptyImages from "../components/EmptyImages/EmptyImage";
 import { router } from "expo-router";
+import { ROUTES } from "../constants/constants";
 
 function Album() {
   const [images, setImages] = useState([]);
@@ -39,7 +40,7 @@ function Album() {
   }, []);
 
   const takePicture = () => {
-    router.push("/home");
+    router.push(ROUTES.SCREEN.CAMERA);
   };
 
   return (

@@ -2,10 +2,11 @@ import React from "react";
 import Button from "../Button/Button";
 import { router } from "expo-router";
 import { StyleSheet, View } from "react-native";
+import { ROUTES } from "../../constants/constants";
 
 function GoBack() {
   const goBack = () => {
-    router.push("/album");
+    router.push(ROUTES.SCREEN.HOME);
   };
   return (
     <View style={styles.container}>

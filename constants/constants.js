@@ -1,6 +1,8 @@
 module.exports = {
   ROUTES: {
-    home: "/home",
-    
+    SCREEN: {
+      HOME: "homeScreen",
+      CAMERA: "cameraScreen",
+    },
   },
 };
