@@ -36,10 +36,7 @@ const CarouselComponent = ({ images = null }) => {
           showSpinner={true}
           {...parallaxProps}
 
-        />
-        {/* <Text style={styles.title} numberOfLines={2}>
-          {item.title}
-        </Text> */}
+        />      
       </View>
     );
   };
