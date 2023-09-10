@@ -11,7 +11,7 @@ import GoBack from "../components/GoBack/GoBack";
 import useCameraPermission from "../hooks/useCameraPermission";
 import { router } from "expo-router";
 import { Route } from "expo-router/build/Route";
-import { ROUTES } from "../constants/constants";
+import { ALBUM, ROUTES } from "../constants/constants";
 
 const Home = () => {
   // const [hasPermission, setHasPermission] = seState(null);
@@ -40,10 +40,10 @@ const Home = () => {
   const savePicture = async () => {
     if (image) {
       try {
-        const isAlbumCreated = await MediaLibrary.getAlbumAsync("galleryApp");
+        const isAlbumCreated = await MediaLibrary.getAlbumAsync(ALBUM.ID);
         const asset = await MediaLibrary.createAssetAsync(image);
         if (!isAlbumCreated) {
-          await MediaLibrary.createAlbumAsync("galleryApp", asset, false);
+          await MediaLibrary.createAlbumAsync(ALBUM.ID, asset, false);
         } else {
           await MediaLibrary.addAssetsToAlbumAsync(
             [asset],
@@ -52,7 +52,6 @@ const Home = () => {
           );
         }
         setImage(null);
-        console.log("saved successfully");
         router.push(ROUTES.SCREEN.HOME);
       } catch (error) {
         console.log(error);

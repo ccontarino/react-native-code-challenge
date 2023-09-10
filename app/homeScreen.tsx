@@ -7,20 +7,15 @@ import * as MediaLibrary from "expo-media-library";
 import CarouselComponent from "../components/Carousel/Carousel";
 import EmptyImages from "../components/EmptyImages/EmptyImage";
 import { router } from "expo-router";
-import { ROUTES } from "../constants/constants";
+import { ALBUM, ROUTES } from "../constants/constants";
 
 function Album() {
   const [images, setImages] = useState([]);
-
   const getAlbumsAsync = async () => {
     try {
       const albums = await MediaLibrary.getAlbumsAsync();
 
-      console.log(albums, "###");
-
-      const CameraAlbumFound = albums.find(
-        (album) => album.title === "galleryApp"
-      );
+      const CameraAlbumFound = albums.find((album) => album.title === ALBUM.ID);
 
       if (CameraAlbumFound) {
         const images = await MediaLibrary.getAssetsAsync({
@@ -28,7 +23,7 @@ function Album() {
           album: CameraAlbumFound.id,
           sortBy: MediaLibrary.SortBy.creationTime,
         });
-        
+
         setImages(images.assets);
       }
     } catch (error) {

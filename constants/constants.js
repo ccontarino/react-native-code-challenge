@@ -5,4 +5,7 @@ module.exports = {
       CAMERA: "cameraScreen",
     },
   },
+  ALBUM: {
+    ID: "GALLERY_APP",
+  },
 };
