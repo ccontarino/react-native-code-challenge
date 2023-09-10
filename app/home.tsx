@@ -9,6 +9,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import SafeArea from "../components/SafeArea/SafeArea";
 import GoBack from "../components/GoBack/GoBack";
 import useCameraPermission from "../hooks/useCameraPermission";
+import { router } from "expo-router";
 
 const Home = () => {
   // const [hasPermission, setHasPermission] = useState(null);
@@ -44,9 +45,10 @@ const Home = () => {
         }else{
           await MediaLibrary.addAssetsToAlbumAsync([asset], isAlbumCreated.id, false);
         }
-        alert("Picture saved! 🎉");
         setImage(null);
         console.log("saved successfully");
+        router.push("/album");
+
       } catch (error) {
         console.log(error);
       }
