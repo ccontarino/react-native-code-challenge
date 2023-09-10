@@ -5,10 +5,18 @@ Use [`expo-router`](https://expo.github.io/router) to build native navigation us
 ## 🚀 How to use
 
 ```sh
-npx create-expo-app -e with-router
+# Install dependencies
+npm install 
+# Run expo local
+npm run start
+# Run ios
+npm run ios
+# Run android
+npm run android
+
 ```
 
 ## 📝 Notes
 
-- [Expo Router: Docs](https://expo.github.io/router)
-- [Expo Router: Repo](https://github.com/expo/router)
+- [Expo Router: Docs](https://docs.expo.dev/)
+- [Expo Router: repo](https://github.com/expo/expo)
