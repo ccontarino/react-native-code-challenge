@@ -13,7 +13,7 @@ function EmptyImages() {
     <View style={styles.container}>
       <Text style={styles.text}>No images available</Text>
       <Text style={styles.text}>Plase Take a picture to see images here</Text>
-      <Link href={"/home"} asChild>
+      <Link href={ROUTES.SCREEN.CAMERA} asChild>
         <Button
           title="Take a picture"
           icon="camera"

@@ -43,24 +43,9 @@ function Album() {
       <View style={{ flex: 1 }}>
         <>
           {images.length > 0 ? (
-            <View
-              style={{
-                width: "100%",
-                justifyContent: "center",
-                alignItems: "center",
-                flex: 1,
-              }}
-            >
+            <View style={styles.imageContainer}>
               <View style={styles.containerTitle}>
-                <Text
-                  style={{
-                    fontSize: 20,
-                    fontFamily: "DMBold",
-                    color: COLORS.dark,
-                  }}
-                >
-                  Images
-                </Text>
+                <Text style={styles.textImage}>Images</Text>
               </View>
               <View style={styles.images}>
                 <CarouselComponent images={images} />
@@ -99,5 +84,16 @@ const styles = StyleSheet.create({
   takePicture: {
     justifyContent: "flex-start",
     flex: 0.3,
+  },
+  imageContainer: {
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    flex: 1,
+  },
+  textImage: {
+    fontSize: 20,
+    fontFamily: "DMBold",
+    color: COLORS.dark,
   },
 });
