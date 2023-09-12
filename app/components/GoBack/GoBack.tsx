@@ -2,7 +2,7 @@ import React from "react";
 import Button from "../Button/Button";
 import { router } from "expo-router";
 import { StyleSheet, View } from "react-native";
-import { ROUTES } from "../../constants/constants";
+import { ROUTES } from "../../../constants/constants";
 
 function GoBack() {
   const goBack = () => {

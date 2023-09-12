@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import Button from "../components/Button/Button";
+import Button from "./components/Button/Button";
 import { COLORS } from "../constants";
-import SafeArea from "../components/SafeArea/SafeArea";
+import SafeArea from "./components/SafeArea/SafeArea";
 import * as MediaLibrary from "expo-media-library";
-import CarouselComponent from "../components/Carousel/Carousel";
-import EmptyImages from "../components/EmptyImages/EmptyImage";
+import CarouselComponent from "./components/Carousel/Carousel";
+import EmptyImages from "./components/EmptyImages/EmptyImage";
 import { router } from "expo-router";
 import { ALBUM, ROUTES } from "../constants/constants";
 import useCameraPermission from "../hooks/useCameraPermission";
-import NoPermissionText from "../components/NoPermissionText/NoPermissionText";
+import NoPermissionText from "./components/NoPermissionText/NoPermissionText";
 
 function HomeScreen() {
   const [images, setImages] = useState([]);
