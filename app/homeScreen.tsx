@@ -27,7 +27,7 @@ function HomeScreen() {
           sortBy: MediaLibrary.SortBy.creationTime,
         });
 
-        setImages(images.assets);
+        setImages(JSON.parse(JSON.stringify(images.assets)));
       }
     } catch (error) {
       console.log(error);
@@ -41,6 +41,17 @@ function HomeScreen() {
     router.push(ROUTES.SCREEN.CAMERA);
   };
 
+  const handleMediaLibraryEvent = (event) => {
+    if (event && event?.insertedAssets.length > 0)
+      setImages((prev) => [event.insertedAssets[0], ...prev]);
+  };
+  useEffect(() => {
+    const subscription = MediaLibrary.addListener(handleMediaLibraryEvent);
+
+    return () => {
+      subscription.remove();
+    };
+  }, []);
   return (
     <SafeArea>
       <View style={{ flex: 1 }}>

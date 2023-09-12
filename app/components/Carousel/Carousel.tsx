@@ -12,18 +12,14 @@ import {
 const { width: screenWidth } = Dimensions.get("window");
 
 const CarouselComponent = ({ images = null }) => {
-  const [entries, setEntries] = useState([]);
+
   const carouselRef = useRef(null);
 
   const goForward = () => {
     carouselRef.current.snapToNext();
   };
 
-  useEffect(() => {
-    if (images) {
-      setEntries(images);
-    }
-  }, []);
+
 
   const renderItem = ({ item, index }, parallaxProps) => {
     return (
@@ -49,7 +45,7 @@ const CarouselComponent = ({ images = null }) => {
         sliderWidth={screenWidth}
         sliderHeight={screenWidth}
         itemWidth={screenWidth - 60}
-        data={entries}
+        data={images}
         renderItem={renderItem}
         hasParallaxImages={true}
       />
