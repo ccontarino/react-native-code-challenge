@@ -8,9 +8,12 @@ import CarouselComponent from "../components/Carousel/Carousel";
 import EmptyImages from "../components/EmptyImages/EmptyImage";
 import { router } from "expo-router";
 import { ALBUM, ROUTES } from "../constants/constants";
+import useCameraPermission from "../hooks/useCameraPermission";
+import NoPermissionText from "../components/NoPermissionText/NoPermissionText";
 
-function Album() {
+function HomeScreen() {
   const [images, setImages] = useState([]);
+  const hasPermission = useCameraPermission();
   const getAlbumsAsync = async () => {
     try {
       const albums = await MediaLibrary.getAlbumsAsync();
@@ -41,34 +44,38 @@ function Album() {
   return (
     <SafeArea>
       <View style={{ flex: 1 }}>
-        <>
-          {images.length > 0 ? (
-            <View style={styles.imageContainer}>
-              <View style={styles.containerTitle}>
-                <Text style={styles.textImage}>Images</Text>
-              </View>
-              <View style={styles.images}>
-                <CarouselComponent images={images} />
-                <View style={styles.takePicture}>
-                  <Button
-                    onPress={takePicture}
-                    icon="camera"
-                    title="Take a picture"
-                    color={"black"}
-                  />
+        {hasPermission ? (
+          <>
+            {images.length > 0 ? (
+              <View style={styles.imageContainer}>
+                <View style={styles.containerTitle}>
+                  <Text style={styles.textImage}>Images</Text>
+                </View>
+                <View style={styles.images}>
+                  <CarouselComponent images={images} />
+                  <View style={styles.takePicture}>
+                    <Button
+                      onPress={takePicture}
+                      icon="camera"
+                      title="Take a picture"
+                      color={"black"}
+                    />
+                  </View>
                 </View>
               </View>
-            </View>
-          ) : (
-            <EmptyImages />
-          )}
-        </>
+            ) : (
+              <EmptyImages />
+            )}
+          </>
+        ) : (
+          <NoPermissionText />
+        )}
       </View>
     </SafeArea>
   );
 }
 
-export default Album;
+export default HomeScreen;
 
 const styles = StyleSheet.create({
   images: {
